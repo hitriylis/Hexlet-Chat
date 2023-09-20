@@ -8,7 +8,7 @@ export default {
     username: 'Ваш ник',
     password: 'Пароль',
     authFailed: 'Неверные имя пользователя или пароль',
-    noAccountQM: 'Нет аккаунта?',
+    noAccountQM: 'Нет аккаунта? ',
     registration: 'Регистрация',
   },
 };
