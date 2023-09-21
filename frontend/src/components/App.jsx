@@ -1,7 +1,4 @@
 /* eslint-disable functional/no-expression-statements */
-/* eslint-disable max-len */
-/* eslint-disable no-prototype-builtins */
-/* eslint-disable no-unused-vars */
 
 import {
   BrowserRouter,
@@ -10,11 +7,10 @@ import {
   useLocation,
   Navigate,
 } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import ChatPage from './ChatPage';
 import NotFoundPage from './NotFoundPage';
 import LoginPage from './LoginPage';
 import useAuth from '../hooks';
-import routes from '../routes';
 
 const PrivateRoute = ({ children }) => {
   const location = useLocation();
@@ -32,7 +28,7 @@ const App = () => (
         index
         element={(
           <PrivateRoute>
-            <h1>Index Page </h1>
+            <ChatPage />
           </PrivateRoute>
         )}
       />
