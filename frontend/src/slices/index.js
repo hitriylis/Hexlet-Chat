@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-
-import dataReducer from './dataSlice';
+import channelsReducer from './channelsSlice';
+import messagesReducer from './messagesSlice';
 
 export default configureStore({
   reducer: {
-    data: dataReducer,
+    channels: channelsReducer,
+    messages: messagesReducer,
   },
 });

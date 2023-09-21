@@ -10,5 +10,6 @@ export default {
     authFailed: 'Неверные имя пользователя или пароль',
     noAccountQM: 'Нет аккаунта? ',
     registration: 'Регистрация',
+    channels: 'Каналы',
   },
 };
