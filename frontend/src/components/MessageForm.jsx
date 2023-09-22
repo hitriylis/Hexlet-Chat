@@ -59,6 +59,7 @@ const MessageForm = () => {
             onChange={formik.handleChange}
             value={formik.values.messageBody}
             ref={inputRef}
+            disabled={formik.isSubmitting}
           />
           <Button
             type="submit"

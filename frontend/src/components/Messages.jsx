@@ -5,7 +5,9 @@ import MessageForm from './MessageForm';
 const Messages = () => {
   const { t } = useTranslation();
   const { channels, currentChannelId } = useSelector((state) => state.channels);
-  const currentChannelName = channels.find(({ id }) => id === currentChannelId);
+  const currentChannelName = channels.length > 0
+    ? channels.find(({ id }) => id === currentChannelId).name
+    : '';
   const messages = useSelector((state) => state.messages)
     .messages
     .filter(({ channelId }) => channelId === currentChannelId);

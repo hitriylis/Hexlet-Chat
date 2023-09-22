@@ -20,5 +20,8 @@ export default {
     newMessage: 'Новое сообщение',
     newMessagePlaceholder: 'Введите сообщение...',
     send: 'Отправить',
+    cancel: 'Отмена',
+    modalAddChannel: 'Добавить канал',
+    modalChannelName: 'Имя канала',
   },
 };

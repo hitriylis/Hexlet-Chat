@@ -3,18 +3,28 @@ import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import AddChannelSVG from './AddChannel';
 import { setChannel } from '../slices/channelsSlice';
+import renderModal from '../modals';
+import { open } from '../slices/modalsSlice';
 
 const Channels = () => {
   const { channels, currentChannelId } = useSelector((state) => state.channels);
+  const { modalType } = useSelector((state) => state.modals);
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const handleSetChannel = (id) => dispatch(setChannel(id));
+  const showModal = (modal) => () => dispatch(open(modal));
+
+  console.log(modalType);
 
   return (
     <div className="col-4 col-md-2 border-end px-0 bg-light flex-column h-100 d-flex">
       <div className="d-flex mt-1 justify-content-between mb-2 ps-4 pe-2 p-4">
         <b>{t('channels')}</b>
-        <Button variant="" className="p-0 text-primary btn-group-vertical">
+        <Button
+          variant=""
+          className="p-0 text-primary btn-group-vertical"
+          onClick={showModal('adding')}
+        >
           <AddChannelSVG />
           <span className="visually-hidden">+</span>
         </Button>
@@ -33,6 +43,7 @@ const Channels = () => {
           </li>
         ))}
       </ul>
+      {renderModal(modalType)}
     </div>
   );
 };
