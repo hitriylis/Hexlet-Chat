@@ -4,10 +4,10 @@ import { Form, Button } from 'react-bootstrap';
 import { useRef, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
-import loginSchema from '../schemas';
+import { loginSchema } from '../schemas';
 import loginImg from '../assets/login.jpg';
 import routes from '../routes';
-import useAuth from '../hooks';
+import { useAuth } from '../hooks';
 
 const LoginPage = () => {
   const { t } = useTranslation();

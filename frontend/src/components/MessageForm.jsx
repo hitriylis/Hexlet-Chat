@@ -2,24 +2,49 @@ import { Form, Button } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef } from 'react';
-
+import { useDispatch, useSelector } from 'react-redux';
 import SendMessage from './SendMessage';
+import { useSocket, useAuth } from '../hooks';
+import { addMessage } from '../slices/messagesSlice';
+import { messageSchema } from '../schemas.js';
 
 const MessageForm = () => {
   const { t } = useTranslation();
-
-  const formik = useFormik({
-    initialValues: { messageBody: '' },
-    onSubmit: ({ messageBody }) => {
-      console.log(messageBody);
-      formik.resetForm();
-    },
-  });
 
   const inputRef = useRef();
   useEffect(() => {
     inputRef.current.focus();
   }, []);
+
+  const { socket, newMessage } = useSocket();
+  const auth = useAuth();
+  const { currentChannelId } = useSelector((state) => state.channels);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    socket.on('newMessage', (message) => {
+      dispatch(addMessage(message));
+    });
+
+    return () => {
+      socket.off('newMessage');
+    };
+  });
+
+  const formik = useFormik({
+    initialValues: { messageBody: '' },
+    onSubmit: async ({ messageBody }) => {
+      await newMessage({
+        message: messageBody,
+        channelId: currentChannelId,
+        user: auth.getUsername(),
+      });
+      formik.resetForm();
+    },
+    validationSchema: messageSchema,
+  });
+
+  const initialDisabled = formik.values.messageBody === formik.initialValues.messageBody;
 
   return (
     <div className="mt-auto px-5 py-3">
@@ -38,6 +63,7 @@ const MessageForm = () => {
           <Button
             type="submit"
             variant="Dark"
+            disabled={!formik.isValid || initialDisabled}
           >
             <SendMessage />
             <span className="visually-hidden">

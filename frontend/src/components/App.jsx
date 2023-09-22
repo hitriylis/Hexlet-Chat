@@ -10,7 +10,7 @@ import {
 import ChatPage from './ChatPage';
 import NotFoundPage from './NotFoundPage';
 import LoginPage from './LoginPage';
-import useAuth from '../hooks';
+import { useAuth } from '../hooks';
 
 const PrivateRoute = ({ children }) => {
   const location = useLocation();

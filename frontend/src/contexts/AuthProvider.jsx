@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 
 import { useState } from 'react';
-import AuthContext from '.';
+import { AuthContext } from '.';
 
 const AuthProvider = ({ children }) => {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -21,12 +21,20 @@ const AuthProvider = ({ children }) => {
     return {};
   };
 
+  const getUsername = () => {
+    if (loggedIn) {
+      return user.username;
+    }
+    return null;
+  };
+
   return (
     <AuthContext.Provider value={{
       loggedIn,
       logIn,
       logOut,
       getAuthHeader,
+      getUsername,
     }}
     >
       {children}

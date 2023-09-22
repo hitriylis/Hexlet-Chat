@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import useAuth from '../hooks';
+import { useAuth } from '../hooks';
 import fetchData from '../slices/fetchData';
 import Channels from './Channels';
 import Messages from './Messages';
