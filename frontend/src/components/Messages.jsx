@@ -4,8 +4,11 @@ import MessageForm from './MessageForm';
 
 const Messages = () => {
   const { t } = useTranslation();
-  const { messages } = useSelector((state) => state.messages);
-  const { currentChannelName } = useSelector((state) => state.channels);
+  const { channels, currentChannelId } = useSelector((state) => state.channels);
+  const currentChannelName = channels.find(({ id }) => id === currentChannelId);
+  const messages = useSelector((state) => state.messages)
+    .messages
+    .filter(({ channelId }) => channelId === currentChannelId);
 
   return (
     <div className="col p-0 h-100">
