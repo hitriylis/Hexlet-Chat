@@ -2,19 +2,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import AddChannelSVG from './AddChannel';
-import { setChannel } from '../slices/channelsSlice';
 import renderModal from '../modals';
 import { open } from '../slices/modalsSlice';
+import Channel from './Channel';
 
 const Channels = () => {
   const { channels, currentChannelId } = useSelector((state) => state.channels);
   const { modalType } = useSelector((state) => state.modals);
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const handleSetChannel = (id) => dispatch(setChannel(id));
   const showModal = (modal) => () => dispatch(open(modal));
-
-  console.log(modalType);
 
   return (
     <div className="col-4 col-md-2 border-end px-0 bg-light flex-column h-100 d-flex">
@@ -30,17 +27,8 @@ const Channels = () => {
         </Button>
       </div>
       <ul id="channels-box" className="nav flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block">
-        {channels.map(({ id, name }) => (
-          <li className="nav-item w-100" key={id}>
-            <Button
-              variant={id === currentChannelId ? 'secondary' : ''}
-              className="w-100 rounded-0 text-start"
-              onClick={() => handleSetChannel(id)}
-            >
-              <span className="me-1">#</span>
-              {name}
-            </Button>
-          </li>
+        {channels.map((channel) => (
+          <Channel key={channel.id} channel={channel} isActive={currentChannelId === channel.id} />
         ))}
       </ul>
       {renderModal(modalType)}

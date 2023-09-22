@@ -8,3 +8,12 @@ export const loginSchema = yup.object().shape({
 export const messageSchema = yup.object().shape({
   messageBody: yup.string().required(),
 });
+
+export const addChannelSchema = (channels, t) => yup.object().shape({
+  channelName: yup
+    .string()
+    .required(t('requiredField'))
+    .min(3, t('requiredLength'))
+    .max(20, t('requiredLength'))
+    .notOneOf(channels, t('requiredUnique')),
+});

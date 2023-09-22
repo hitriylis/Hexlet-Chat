@@ -31,9 +31,7 @@ const Messages = () => {
             </div>
           ))}
         </div>
-        <div className="mt-auto px-5 py-3">
-          <MessageForm />
-        </div>
+        <MessageForm />
       </div>
     </div>
   );

@@ -63,7 +63,7 @@ const MessageForm = () => {
           />
           <Button
             type="submit"
-            variant="Dark"
+            variant="light"
             className="border-0"
             disabled={!formik.isValid || initialDisabled}
           >
