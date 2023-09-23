@@ -1,4 +1,3 @@
-/* eslint-disable functional/no-expression-statements */
 /* eslint-disable react/jsx-no-constructed-context-values */
 
 import { useState } from 'react';

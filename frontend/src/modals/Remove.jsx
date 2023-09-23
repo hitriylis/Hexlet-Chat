@@ -1,5 +1,3 @@
-/* eslint-disable functional/no-expression-statements */
-
 import { Modal, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';

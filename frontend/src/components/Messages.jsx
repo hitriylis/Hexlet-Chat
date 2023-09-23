@@ -1,11 +1,11 @@
-/* eslint-disable functional/no-expression-statements */
-
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import MessageForm from './MessageForm';
+import { useFilter } from '../hooks';
 
 const Messages = () => {
   const { t } = useTranslation();
+  const filterProfanity = useFilter();
   const { channels, currentChannelId } = useSelector((state) => state.channels);
   const currentChannel = channels.find(({ id }) => id === currentChannelId);
   const currentChannelName = currentChannel ? currentChannel.name : 'general';
@@ -18,7 +18,7 @@ const Messages = () => {
       <div className="d-flex flex-column h-100">
         <div className="bg-light mb-4 p-3 shadow-sm small">
           <p className="m-0">
-            <b>{`# ${currentChannelName}`}</b>
+            <b>{`# ${filterProfanity(currentChannelName)}`}</b>
           </p>
           <span className="text-muted">
             {t('messagesCounter.messages', { count: messages.length })}
@@ -28,7 +28,7 @@ const Messages = () => {
           {messages.map(({ message, user, id }) => (
             <div className="text-break mb-2" key={id}>
               <b>{user}</b>
-              {`: ${message}`}
+              {`: ${filterProfanity(message)}`}
             </div>
           ))}
         </div>

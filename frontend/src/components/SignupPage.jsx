@@ -1,7 +1,3 @@
-/* eslint-disable functional/no-expression-statements */
-/* eslint-disable functional/no-conditional-statements */
-/* eslint-disable no-unused-vars */
-
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useRef, useEffect, useState } from 'react';

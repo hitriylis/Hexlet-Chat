@@ -1,5 +1,3 @@
-/* eslint-disable functional/no-expression-statements */
-
 import ReactDOM from 'react-dom/client';
 import init from './init';
 import './assets/application.scss';

@@ -1,5 +1,3 @@
-/* eslint-disable functional/no-expression-statements */
-
 import { Form, Button } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
