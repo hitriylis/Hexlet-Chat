@@ -34,7 +34,6 @@ const LoginPage = () => {
         formik.setSubmitting(false);
         if (err.isAxiosError && err.response.status === 401) {
           setAuthFailed(true);
-          formik.setSubmitting(false);
           return;
         }
         throw err;
@@ -72,13 +71,13 @@ const LoginPage = () => {
                       autoComplete="username"
                       required
                       id="username"
-                      placeholder={t('username')}
+                      placeholder={t('yourNick')}
                       onChange={formik.handleChange}
                       value={formik.values.username}
                       isInvalid={authFailed || formik.errors.username}
                       ref={inputRef}
                     />
-                    <Form.Label htmlFor="username">{t('username')}</Form.Label>
+                    <Form.Label htmlFor="username">{t('yourNick')}</Form.Label>
                   </Form.Group>
                   <Form.Group className="form-floating mb-3">
                     <Form.Control

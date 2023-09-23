@@ -20,7 +20,7 @@ const Channels = () => {
         <Button
           variant=""
           className="p-0 text-primary btn-group-vertical"
-          onClick={showModal('adding')}
+          onClick={showModal({ modalType: 'adding' })}
         >
           <AddChannelSVG />
           <span className="visually-hidden">+</span>

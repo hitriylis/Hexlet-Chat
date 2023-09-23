@@ -2,10 +2,9 @@ import { Form, Button } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import SendMessage from './SendMessage';
 import { useSocket, useAuth } from '../hooks';
-import { addMessage } from '../slices/messagesSlice';
 import { messageSchema } from '../schemas.js';
 
 const MessageForm = () => {
@@ -16,20 +15,9 @@ const MessageForm = () => {
     inputRef.current.focus();
   }, []);
 
-  const { socket, newMessage } = useSocket();
+  const { newMessage } = useSocket();
   const auth = useAuth();
   const { currentChannelId } = useSelector((state) => state.channels);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    socket.on('newMessage', (message) => {
-      dispatch(addMessage(message));
-    });
-
-    return () => {
-      socket.off('newMessage');
-    };
-  });
 
   const formik = useFormik({
     initialValues: { messageBody: '' },

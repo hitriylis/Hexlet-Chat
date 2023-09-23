@@ -8,7 +8,6 @@ const Channel = ({ isActive, channel }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const handleSetChannel = (id) => dispatch(setChannel(id));
-  const handleRenameChannel = () => {};
   const showModal = (modal) => () => dispatch(open(modal));
 
   const notRemovable = (
@@ -40,10 +39,10 @@ const Channel = ({ isActive, channel }) => {
         <span className="visually-hidden">{t('modalManageChannel')}</span>
       </Dropdown.Toggle>
       <Dropdown.Menu>
-        <Dropdown.Item onClick={showModal('removing')}>
+        <Dropdown.Item onClick={showModal({ modalType: 'removing', channelId: channel.id })}>
           {t('modalRemove')}
         </Dropdown.Item>
-        <Dropdown.Item onClick={handleRenameChannel}>
+        <Dropdown.Item onClick={showModal({ modalType: 'renaming', channelId: channel.id })}>
           {t('modalRename')}
         </Dropdown.Item>
       </Dropdown.Menu>
