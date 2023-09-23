@@ -10,6 +10,7 @@ import {
 } from 'react-router-dom';
 import { Navbar, Container, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { ToastContainer } from 'react-toastify';
 import ChatPage from './ChatPage';
 import NotFoundPage from './NotFoundPage';
 import LoginPage from './LoginPage';
@@ -58,6 +59,7 @@ const App = () => {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
+      <ToastContainer />
     </BrowserRouter>
   );
 };

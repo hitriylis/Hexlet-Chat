@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable functional/no-expression-statements */
+/* eslint-disable functional/no-conditional-statements */
 
 import { createSlice } from '@reduxjs/toolkit';
 import fetchData from './fetchData';
@@ -23,6 +24,9 @@ const channelsSlice = createSlice({
   },
   removeChannel: (state, { payload }) => {
     state.channels = state.channels.filter(({ id }) => id !== payload);
+    if (payload === state.currentChannelId) {
+      state.currentChannelId = 1;
+    }
   },
   renameChannel: (state, { payload }) => {
     state.channels = state.channels.map((channel) => {

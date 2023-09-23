@@ -1,9 +1,13 @@
+/* eslint-disable functional/no-expression-statements */
+/* eslint-disable functional/no-conditional-statements */
+
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { Form, Button } from 'react-bootstrap';
 import { useRef, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { loginSchema } from '../schemas';
 import loginImg from '../assets/login.jpg';
 import routes from '../routes';
@@ -32,9 +36,12 @@ const LoginPage = () => {
         navigate(from);
       } catch (err) {
         formik.setSubmitting(false);
-        if (err.isAxiosError && err.response.status === 401) {
-          setAuthFailed(true);
-          return;
+        if (err.isAxiosError) {
+          if (err.response.status === 401) {
+            setAuthFailed(true);
+            return;
+          }
+          toast.error('errorNetwork');
         }
         throw err;
       }

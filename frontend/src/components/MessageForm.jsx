@@ -1,8 +1,11 @@
+/* eslint-disable functional/no-expression-statements */
+
 import { Form, Button } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import SendMessage from './SendMessage';
 import { useSocket, useAuth } from '../hooks';
 import { messageSchema } from '../schemas.js';
@@ -22,12 +25,17 @@ const MessageForm = () => {
   const formik = useFormik({
     initialValues: { messageBody: '' },
     onSubmit: async ({ messageBody }) => {
-      await newMessage({
-        message: messageBody,
-        channelId: currentChannelId,
-        user: auth.getUsername(),
-      });
-      formik.resetForm();
+      try {
+        await newMessage({
+          message: messageBody,
+          channelId: currentChannelId,
+          user: auth.getUsername(),
+        });
+        formik.resetForm();
+      } catch (err) {
+        toast(t('errorNetwork'));
+        throw err;
+      }
     },
     validationSchema: messageSchema,
   });

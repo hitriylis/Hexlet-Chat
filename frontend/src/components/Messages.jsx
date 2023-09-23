@@ -1,3 +1,5 @@
+/* eslint-disable functional/no-expression-statements */
+
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import MessageForm from './MessageForm';
@@ -5,9 +7,8 @@ import MessageForm from './MessageForm';
 const Messages = () => {
   const { t } = useTranslation();
   const { channels, currentChannelId } = useSelector((state) => state.channels);
-  const currentChannelName = channels.length > 0
-    ? channels.find(({ id }) => id === currentChannelId).name
-    : '';
+  const currentChannel = channels.find(({ id }) => id === currentChannelId);
+  const currentChannelName = currentChannel ? currentChannel.name : 'general';
   const messages = useSelector((state) => state.messages)
     .messages
     .filter(({ channelId }) => channelId === currentChannelId);

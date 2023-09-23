@@ -1,8 +1,11 @@
+/* eslint-disable functional/no-expression-statements */
+
 import { Modal, Form, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { useEffect, useRef } from 'react';
+import { toast } from 'react-toastify';
 import { close } from '../slices/modalsSlice';
 import { useSocket } from '../hooks';
 import { addChannelSchema } from '../schemas';
@@ -25,8 +28,14 @@ const Add = () => {
   const formik = useFormik({
     initialValues: { channelName: '' },
     onSubmit: async ({ channelName }) => {
-      await newChannel({ name: channelName, removable: true });
-      handleClose();
+      try {
+        await newChannel({ name: channelName, removable: true });
+        toast.success(t('noteAddChannel'));
+        handleClose();
+      } catch (err) {
+        toast.error(t('networkError'));
+        throw err;
+      }
     },
     validationSchema: addChannelSchema(channels, t),
   });
@@ -43,6 +52,7 @@ const Add = () => {
               <Form.Control
                 name="channelName"
                 className="mb-2"
+                autoComplete="off"
                 onChange={formik.handleChange}
                 value={formik.values.channelName}
                 disabled={formik.isSubmitting}
