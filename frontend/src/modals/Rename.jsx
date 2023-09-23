@@ -46,6 +46,7 @@ const Rename = () => {
           <Form.Group>
             <Form.Control
               name="channelName"
+              id="channelName"
               className="mb-2"
               onChange={formik.handleChange}
               value={formik.values.channelName}
@@ -53,7 +54,7 @@ const Rename = () => {
               isInvalid={formik.errors.channelName}
               ref={inputRef}
             />
-            <Form.Label visuallyHidden>{t('modalChannelName')}</Form.Label>
+            <Form.Label htmlFor="channelName" visuallyHidden>{t('modalChannelName')}</Form.Label>
             <Form.Control.Feedback type="invalid">{formik.errors.channelName}</Form.Control.Feedback>
             <div className="d-flex justify-content-end">
               <Button variant="secondary" className="me-2" onClick={handleClose}>{t('cancel')}</Button>
