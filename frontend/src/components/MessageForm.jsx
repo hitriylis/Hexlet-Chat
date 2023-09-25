@@ -4,17 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import SendMessage from './SendMessage';
+import { SendMessageIcon } from './icons';
 import { useSocket, useAuth } from '../hooks';
 import { messageSchema } from '../schemas.js';
 
 const MessageForm = () => {
   const { t } = useTranslation();
-
-  const inputRef = useRef();
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
 
   const { newMessage } = useSocket();
   const auth = useAuth();
@@ -32,13 +27,17 @@ const MessageForm = () => {
         formik.resetForm();
       } catch (err) {
         toast(t('errorNetwork'));
-        throw err;
       }
     },
     validationSchema: messageSchema,
   });
 
   const initialDisabled = formik.values.messageBody === formik.initialValues.messageBody;
+
+  const inputRef = useRef();
+  useEffect(() => {
+    inputRef.current.focus();
+  });
 
   return (
     <div className="mt-auto px-5 py-3">
@@ -61,7 +60,7 @@ const MessageForm = () => {
             className="border-0"
             disabled={!formik.isValid || initialDisabled}
           >
-            <SendMessage />
+            <SendMessageIcon />
             <span className="visually-hidden">
               {t('send')}
             </span>

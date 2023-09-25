@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { useEffect, useRef } from 'react';
 import MessageForm from './MessageForm';
 import { useFilter } from '../hooks';
 
@@ -13,6 +14,11 @@ const Messages = () => {
     .messages
     .filter(({ channelId }) => channelId === currentChannelId);
 
+  const lastRef = useRef();
+  useEffect(() => {
+    lastRef.current?.lastElementChild?.scrollIntoView();
+  }, [messages]);
+
   return (
     <div className="col p-0 h-100">
       <div className="d-flex flex-column h-100">
@@ -24,7 +30,11 @@ const Messages = () => {
             {t('messagesCounter.messages', { count: messages.length })}
           </span>
         </div>
-        <div id="messages-box" className="chat-messages overflow-auto px-5">
+        <div
+          id="messages-box"
+          className="chat-messages overflow-auto px-5"
+          ref={lastRef}
+        >
           {messages.map(({ message, user, id }) => (
             <div className="text-break mb-2" key={id}>
               <b>{user}</b>
