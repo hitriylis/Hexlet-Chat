@@ -6,6 +6,5 @@ export default {
   signupPath: () => [apiPath, 'signup'].join('/'),
   login: () => '/login',
   signup: () => '/signup',
-  notFound: () => '*',
   home: () => '/',
 };

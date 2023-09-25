@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
-import { Form, Button } from 'react-bootstrap';
 import { useRef, useEffect, useState } from 'react';
+import { Form, Button } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { loginSchema } from '../schemas';
@@ -11,7 +11,9 @@ import { useAuth } from '../hooks';
 
 const LoginPage = () => {
   const { t } = useTranslation();
+
   const [authFailed, setAuthFailed] = useState(false);
+
   const location = useLocation();
   const navigate = useNavigate();
   const auth = useAuth();
@@ -35,7 +37,7 @@ const LoginPage = () => {
             setAuthFailed(true);
             return;
           }
-          toast.error('errorNetwork');
+          toast.error(t('errorNetwork'));
         }
         throw err;
       }

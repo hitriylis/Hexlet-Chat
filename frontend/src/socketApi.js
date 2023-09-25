@@ -1,6 +1,6 @@
 import { io } from 'socket.io-client';
 
-export const socket = io();
+const socket = io();
 
 export const newMessage = async (message) => {
   await socket.emit('newMessage', message);
@@ -18,3 +18,5 @@ export const removeChannel = async (channel) => {
 export const renameChannel = async (channel) => {
   await socket.emit('renameChannel', channel);
 };
+
+export const listen = (event, cb) => socket.on(event, cb);

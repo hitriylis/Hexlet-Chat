@@ -4,15 +4,16 @@ import { useTranslation } from 'react-i18next';
 import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import SendMessageIcon from './icons/SendMessage';
 import { useAuth } from '../hooks';
 import { messageSchema } from '../schemas.js';
+import { SendMessageIcon } from './icons';
 import { newMessage } from '../socketApi';
 
 const MessageForm = () => {
   const { t } = useTranslation();
 
   const auth = useAuth();
+
   const { currentChannelId } = useSelector((state) => state.channels);
 
   const formik = useFormik({

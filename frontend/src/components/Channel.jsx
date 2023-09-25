@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { Button, ButtonGroup, Dropdown } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { setChannel } from '../slices/channelsSlice';
 import { open } from '../slices/modalsSlice';
+import { setChannel } from '../slices/channelsSlice';
 import { useFilter } from '../hooks';
 
 const Channel = ({ isActive, channel }) => {

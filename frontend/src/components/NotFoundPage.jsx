@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import notFoundImg from '../assets/404.svg';
+import notFoundImg from '../assets/error404.svg';
 import routes from '../routes';
 
 const NotFoundPage = () => {

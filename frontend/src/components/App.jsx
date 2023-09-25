@@ -10,8 +10,8 @@ import { Navbar, Container, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { ToastContainer } from 'react-toastify';
 import ChatPage from './ChatPage';
-import NotFoundPage from './NotFoundPage';
 import LoginPage from './LoginPage';
+import NotFoundPage from './NotFoundPage';
 import SignupPage from './SignupPage';
 import { useAuth } from '../hooks';
 import routes from '../routes';
@@ -21,7 +21,7 @@ const PrivateRoute = ({ children }) => {
   const auth = useAuth();
 
   return (
-    auth.loggedIn ? children : <Navigate to={routes.login()} state={{ from: location }} />
+    auth.user ? children : <Navigate to={routes.login()} state={{ from: location }} />
   );
 };
 
@@ -29,7 +29,7 @@ const Logout = () => {
   const auth = useAuth();
   const { t } = useTranslation();
   return (
-    auth.loggedIn ? <Button onClick={auth.logOut}>{t('logout')}</Button> : null
+    auth.user ? <Button onClick={auth.logOut}>{t('logout')}</Button> : null
   );
 };
 
@@ -55,7 +55,7 @@ const App = () => {
           />
           <Route path={routes.login()} element={<LoginPage />} />
           <Route path={routes.signup()} element={<SignupPage />} />
-          <Route path={routes.notFound()} element={<NotFoundPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
       <ToastContainer />

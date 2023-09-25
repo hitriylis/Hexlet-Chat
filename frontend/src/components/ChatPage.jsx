@@ -13,6 +13,7 @@ const ChatPage = () => {
   const auth = useAuth();
   const dispatch = useDispatch();
   const { t } = useTranslation();
+
   const authToken = auth.getAuthToken();
   const authHeader = authToken ? { Authorization: `Bearer ${authToken}` } : {};
 

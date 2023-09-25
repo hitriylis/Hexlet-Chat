@@ -7,7 +7,7 @@ import resources from './locales';
 import AuthProvider from './contexts/AuthProvider';
 import store from './slices';
 import FilterProvider from './contexts/FilterProvider';
-import { socket } from './socketApi';
+import { listen } from './socketApi';
 import { addMessage } from './slices/messagesSlice';
 import {
   addChannel,
@@ -32,22 +32,22 @@ const init = async () => {
   };
 
   const { dispatch } = store;
-  socket.on('newMessage', (message) => {
+  listen('newMessage', (message) => {
     dispatch(addMessage(message));
   });
-  socket.on('newChannel', (channel) => {
+  listen('newChannel', (channel) => {
     dispatch(addChannel(channel));
   });
-  socket.on('removeChannel', ({ id }) => {
+  listen('removeChannel', ({ id }) => {
     dispatch(removeChannel(id));
   });
-  socket.on('renameChannel', (channel) => {
+  listen('renameChannel', (channel) => {
     dispatch(renameChannel(channel));
   });
-  socket.on('connect_error', () => {
+  listen('connect_error', () => {
     dispatch(setError(true));
   });
-  socket.on('connect', () => {
+  listen('connect', () => {
     dispatch(setError(false));
   });
 

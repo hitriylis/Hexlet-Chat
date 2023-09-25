@@ -45,6 +45,7 @@ export default {
     mustMatch: 'Пароли должны совпадать',
     userExists: 'Такой пользователь уже существует',
     errorNetwork: 'Ошибка соединения',
+    errorDataExchange: 'Ошибка при отправке данных',
     loading: 'Загрузка...',
   },
 };
