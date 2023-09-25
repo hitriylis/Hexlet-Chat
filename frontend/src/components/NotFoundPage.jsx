@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import notFoundImg from '../assets/404.svg';
+import routes from '../routes';
 
 const NotFoundPage = () => {
   const { t } = useTranslation();
@@ -10,7 +11,7 @@ const NotFoundPage = () => {
       <h1 className="h4 text-muted">{t('notFound')}</h1>
       <p className="text-muted">
         {t('redirectTextBegin')}
-        <a href="/">{t('redirectTextEnd')}</a>
+        <a href={routes.home()}>{t('redirectTextEnd')}</a>
       </p>
     </div>
   );

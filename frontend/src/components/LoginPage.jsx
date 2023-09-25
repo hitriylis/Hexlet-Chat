@@ -2,7 +2,6 @@ import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { Form, Button } from 'react-bootstrap';
 import { useRef, useEffect, useState } from 'react';
-import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { loginSchema } from '../schemas';
@@ -22,14 +21,12 @@ const LoginPage = () => {
       username: '',
       password: '',
     },
-    onSubmit: async (values) => {
+    onSubmit: async ({ username, password }) => {
       setAuthFailed(false);
 
       try {
-        const { data } = await axios.post(routes.loginPath(), values);
-        localStorage.setItem('user', JSON.stringify(data));
-        auth.logIn();
-        const { from } = location.state || { from: { pathname: '/' } };
+        await auth.logIn({ username, password });
+        const { from } = location.state || { from: { pathname: routes.home() } };
         navigate(from);
       } catch (err) {
         formik.setSubmitting(false);
@@ -111,7 +108,7 @@ const LoginPage = () => {
             <div className="card-footer p-4">
               <div className="text-center">
                 <span>{t('noAccountQM')}</span>
-                <a href="/signup">{t('registration')}</a>
+                <a href={routes.signup()}>{t('registration')}</a>
               </div>
             </div>
           </div>

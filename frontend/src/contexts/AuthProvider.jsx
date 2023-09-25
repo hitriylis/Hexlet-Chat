@@ -1,23 +1,36 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { useState, useCallback, useMemo } from 'react';
+import axios from 'axios';
 import { AuthContext } from '.';
+import routes from '../routes';
 
 const AuthProvider = ({ children }) => {
   const user = JSON.parse(localStorage.getItem('user'));
   const [loggedIn, setLoggedIn] = useState(user && user.token);
 
-  const logIn = useCallback(() => setLoggedIn(true), []);
+  const logIn = useCallback(async ({ username, password }) => {
+    const { data } = await axios.post(routes.loginPath(), { username, password });
+    setLoggedIn(true);
+    localStorage.setItem('user', JSON.stringify(data));
+  }, []);
+
+  const signup = useCallback(async ({ username, password }) => {
+    const { data } = await axios.post(routes.signupPath(), { username, password });
+    setLoggedIn(true);
+    localStorage.setItem('user', JSON.stringify(data));
+  }, []);
+
   const logOut = useCallback(() => {
     setLoggedIn(false);
     localStorage.removeItem('user');
   }, []);
 
-  const getAuthHeader = useCallback(() => {
+  const getAuthToken = useCallback(() => {
     if (loggedIn) {
-      return { Authorization: `Bearer ${user.token}` };
+      return user.token;
     }
-    return {};
+    return null;
   }, [loggedIn]);
 
   const getUsername = useCallback(() => {
@@ -31,9 +44,10 @@ const AuthProvider = ({ children }) => {
     loggedIn,
     logIn,
     logOut,
-    getAuthHeader,
+    getAuthToken,
     getUsername,
-  }), [loggedIn, logIn, logOut, getAuthHeader, getUsername]);
+    signup,
+  }), [loggedIn, logIn, logOut, getAuthToken, getUsername, signup]);
 
   return (
     <AuthContext.Provider value={value}>

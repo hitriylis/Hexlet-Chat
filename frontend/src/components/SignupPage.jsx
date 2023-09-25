@@ -2,7 +2,6 @@ import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useRef, useEffect, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { signupSchema } from '../schemas';
@@ -28,10 +27,8 @@ const SignupPage = () => {
       setSignupFailed(false);
 
       try {
-        const { data } = await axios.post(routes.signupPath(), { username, password });
-        localStorage.setItem('user', JSON.stringify(data));
-        auth.logIn();
-        const { from } = location.state || { from: { pathname: '/' } };
+        await auth.signup({ username, password });
+        const { from } = location.state || { from: { pathname: routes.home() } };
         navigate(from);
       } catch (err) {
         formik.setSubmitting(false);

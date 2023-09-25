@@ -16,13 +16,15 @@ import {
   renameChannel,
   setError,
 } from '../slices/channelsSlice';
+import routes from '../routes';
 
 const ChatPage = () => {
   const auth = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const authHeader = auth.getAuthHeader();
+  const authToken = auth.getAuthToken();
+  const authHeader = authToken ? { Authorization: `Bearer ${authToken}` } : {};
   const { socket } = useSocket();
 
   useEffect(() => {
@@ -79,7 +81,7 @@ const ChatPage = () => {
 
   if (error) {
     auth.logOut();
-    navigate('/login');
+    navigate(routes.login());
   }
 
   if (loading) {

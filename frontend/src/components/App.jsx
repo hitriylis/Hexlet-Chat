@@ -14,13 +14,14 @@ import NotFoundPage from './NotFoundPage';
 import LoginPage from './LoginPage';
 import SignupPage from './SignupPage';
 import { useAuth } from '../hooks';
+import routes from '../routes';
 
 const PrivateRoute = ({ children }) => {
   const location = useLocation();
   const auth = useAuth();
 
   return (
-    auth.loggedIn ? children : <Navigate to="/login" state={{ from: location }} />
+    auth.loggedIn ? children : <Navigate to={routes.login()} state={{ from: location }} />
   );
 };
 
@@ -39,7 +40,7 @@ const App = () => {
       <div className="d-flex flex-column h-100">
         <Navbar className="shadow-sm" expand="lg" bg="white">
           <Container>
-            <Navbar.Brand as={Link} to="/">{t('mainHeader')}</Navbar.Brand>
+            <Navbar.Brand as={Link} to={routes.home()}>{t('mainHeader')}</Navbar.Brand>
             <Logout />
           </Container>
         </Navbar>
@@ -52,9 +53,9 @@ const App = () => {
               </PrivateRoute>
             )}
           />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="signup" element={<SignupPage />} />
-          <Route path="*" element={<NotFoundPage />} />
+          <Route path={routes.login()} element={<LoginPage />} />
+          <Route path={routes.signup()} element={<SignupPage />} />
+          <Route path={routes.notFound()} element={<NotFoundPage />} />
         </Routes>
       </div>
       <ToastContainer />
