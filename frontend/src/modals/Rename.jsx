@@ -6,11 +6,10 @@ import { useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import { close } from '../slices/modalsSlice';
 import { addChannelSchema } from '../schemas';
-import { useSocket } from '../hooks';
+import { renameChannel } from '../socketApi';
 
 const Rename = () => {
   const { t } = useTranslation();
-  const { renameChannel } = useSocket();
   const { opened, channelId } = useSelector((state) => state.modals);
   const { channels } = useSelector((state) => state.channels);
   const dispatch = useDispatch();

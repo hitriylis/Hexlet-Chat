@@ -5,13 +5,13 @@ import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import SendMessageIcon from './icons/SendMessage';
-import { useSocket, useAuth } from '../hooks';
+import { useAuth } from '../hooks';
 import { messageSchema } from '../schemas.js';
+import { newMessage } from '../socketApi';
 
 const MessageForm = () => {
   const { t } = useTranslation();
 
-  const { newMessage } = useSocket();
   const auth = useAuth();
   const { currentChannelId } = useSelector((state) => state.channels);
 
@@ -26,7 +26,7 @@ const MessageForm = () => {
         });
         formik.resetForm();
       } catch (err) {
-        toast(t('errorNetwork'));
+        toast.error(t('errorNetwork'));
       }
     },
     validationSchema: messageSchema,

@@ -37,7 +37,7 @@ const SignupPage = () => {
             setSignupFailed(true);
             return;
           }
-          toast('errorNetwork');
+          toast.error('errorNetwork');
         }
         throw err;
       }

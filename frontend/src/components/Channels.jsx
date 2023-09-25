@@ -24,7 +24,7 @@ const Channels = () => {
       <div className="d-flex mt-1 justify-content-between mb-2 ps-4 pe-2 p-4">
         <b>{t('channels')}</b>
         <Button
-          variant=""
+          variant="link"
           className="p-0 text-primary btn-group-vertical"
           onClick={showModal({ modalType: 'adding' })}
         >

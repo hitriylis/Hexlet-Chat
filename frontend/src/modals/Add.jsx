@@ -6,12 +6,11 @@ import { useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import { close } from '../slices/modalsSlice';
 import { setChannel } from '../slices/channelsSlice';
-import { useSocket } from '../hooks';
 import { addChannelSchema } from '../schemas';
+import { newChannel } from '../socketApi';
 
 const Add = () => {
   const { t } = useTranslation();
-  const { newChannel } = useSocket();
   const opened = useSelector((state) => state.modals.opened);
   const channels = useSelector((state) => state.channels)
     .channels
