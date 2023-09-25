@@ -1,41 +1,42 @@
-/* eslint-disable react/jsx-no-constructed-context-values */
+/* eslint-disable react-hooks/exhaustive-deps */
 
-import { useState } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { AuthContext } from '.';
 
 const AuthProvider = ({ children }) => {
   const user = JSON.parse(localStorage.getItem('user'));
   const [loggedIn, setLoggedIn] = useState(user && user.token);
 
-  const logIn = () => setLoggedIn(true);
-  const logOut = () => {
+  const logIn = useCallback(() => setLoggedIn(true), []);
+  const logOut = useCallback(() => {
     setLoggedIn(false);
     localStorage.removeItem('user');
-  };
+  }, []);
 
-  const getAuthHeader = () => {
+  const getAuthHeader = useCallback(() => {
     if (loggedIn) {
       return { Authorization: `Bearer ${user.token}` };
     }
     return {};
-  };
+  }, [loggedIn]);
 
-  const getUsername = () => {
+  const getUsername = useCallback(() => {
     if (loggedIn) {
       return user.username;
     }
     return null;
-  };
+  }, [loggedIn]);
+
+  const value = useMemo(() => ({
+    loggedIn,
+    logIn,
+    logOut,
+    getAuthHeader,
+    getUsername,
+  }), [loggedIn, logIn, logOut, getAuthHeader, getUsername]);
 
   return (
-    <AuthContext.Provider value={{
-      loggedIn,
-      logIn,
-      logOut,
-      getAuthHeader,
-      getUsername,
-    }}
-    >
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );

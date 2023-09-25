@@ -21,7 +21,7 @@ const init = async () => {
 
   const rollbarConfig = {
     accessToken: 'a4a93331a64743fda7c96ceef32e216e',
-    environment: 'testenv',
+    environment: 'production',
   };
 
   return (

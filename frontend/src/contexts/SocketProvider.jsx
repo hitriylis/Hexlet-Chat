@@ -1,7 +1,5 @@
-/* eslint-disable react/jsx-no-constructed-context-values */
-
 import { io } from 'socket.io-client';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { SocketContext } from '.';
 
 const SocketProvider = ({ children }) => {
@@ -23,15 +21,16 @@ const SocketProvider = ({ children }) => {
     await socket.emit('renameChannel', channel);
   }, [socket]);
 
+  const value = useMemo(() => ({
+    socket,
+    newMessage,
+    newChannel,
+    removeChannel,
+    renameChannel,
+  }), [socket, newMessage, newChannel, removeChannel, renameChannel]);
+
   return (
-    <SocketContext.Provider value={{
-      socket,
-      newMessage,
-      newChannel,
-      removeChannel,
-      renameChannel,
-    }}
-    >
+    <SocketContext.Provider value={value}>
       {children}
     </SocketContext.Provider>
   );
