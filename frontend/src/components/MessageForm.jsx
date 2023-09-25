@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { SendMessageIcon } from './icons';
+import SendMessageIcon from './icons/SendMessage';
 import { useSocket, useAuth } from '../hooks';
 import { messageSchema } from '../schemas.js';
 

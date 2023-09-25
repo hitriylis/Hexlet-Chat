@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef } from 'react';
-import { AddChannelIcon } from './icons';
+import AddChannelIcon from './icons/AddChannel';
 import renderModal from '../modals';
 import { open } from '../slices/modalsSlice';
 import Channel from './Channel';
