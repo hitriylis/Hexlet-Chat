@@ -19,4 +19,4 @@ make install
 make start
 ```
 
-### Click [here](https://frontend-project-12-production-6b6d.up.railway.app/login) to view in browser.
+### Click [here](https://frontend-project-12-production-4c97.up.railway.app/login) to view in browser.
