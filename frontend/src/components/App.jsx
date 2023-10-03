@@ -1,66 +1,46 @@
+import React from 'react';
 import {
-  BrowserRouter,
-  Routes,
-  Route,
-  useLocation,
-  Navigate,
-  Link,
+  BrowserRouter, Navigate, Route, Routes,
 } from 'react-router-dom';
-import { Navbar, Container, Button } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
+import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-import ChatPage from './ChatPage';
-import LoginPage from './LoginPage';
-import NotFoundPage from './NotFoundPage';
-import SignupPage from './SignupPage';
+
+import ChatNavbar from './Navbar/ChatNavbar';
+import LoginPage from './LoginPage/LoginPage';
+import SignupPage from './SignupPage/SignupPage';
+import ChatPage from './ChatPage/ChatPage';
+import NotFoundPage from './Errors/NotFoundPage';
+
 import { useAuth } from '../hooks';
-import routes from '../routes';
+import { appPaths } from '../routes';
 
-const PrivateRoute = ({ children }) => {
-  const location = useLocation();
+const ProtectedRoute = ({ children }) => {
   const auth = useAuth();
-
-  return (
-    auth.user ? children : <Navigate to={routes.login()} state={{ from: location }} />
-  );
+  return auth.user ? children : <Navigate to={appPaths.login} />;
 };
 
-const Logout = () => {
-  const auth = useAuth();
-  const { t } = useTranslation();
-  return (
-    auth.user ? <Button onClick={auth.logOut}>{t('logout')}</Button> : null
-  );
-};
-
-const App = () => {
-  const { t } = useTranslation();
-  return (
-    <BrowserRouter>
-      <div className="d-flex flex-column h-100">
-        <Navbar className="shadow-sm" expand="lg" bg="white">
-          <Container>
-            <Navbar.Brand as={Link} to={routes.home()}>{t('mainHeader')}</Navbar.Brand>
-            <Logout />
-          </Container>
-        </Navbar>
-        <Routes>
-          <Route
-            index
-            element={(
-              <PrivateRoute>
-                <ChatPage />
-              </PrivateRoute>
-            )}
-          />
-          <Route path={routes.login()} element={<LoginPage />} />
-          <Route path={routes.signup()} element={<SignupPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </div>
+const App = () => (
+  <BrowserRouter>
+    <div className="d-flex flex-column h-100">
       <ToastContainer />
-    </BrowserRouter>
-  );
-};
+      <ChatNavbar />
+
+      <Routes>
+        <Route path={appPaths.login} element={<LoginPage />} />
+        <Route path={appPaths.signUp} element={<SignupPage />} />
+        <Route
+          path={appPaths.chat}
+          element={(
+            <ProtectedRoute>
+              <ChatPage />
+            </ProtectedRoute>
+          )}
+        />
+        <Route path={appPaths.notFound} element={<NotFoundPage />} />
+      </Routes>
+
+    </div>
+  </BrowserRouter>
+);
 
 export default App;

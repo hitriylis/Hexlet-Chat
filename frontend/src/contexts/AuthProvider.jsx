@@ -1,49 +1,39 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+import { useCallback, useMemo, useState } from 'react';
 
-import axios from 'axios';
-import { useState, useCallback, useMemo } from 'react';
-import { AuthContext } from '.';
-import routes from '../routes';
+import { AuthContext } from './index';
 
 const AuthProvider = ({ children }) => {
   const currentUser = JSON.parse(localStorage.getItem('user'));
-  const [user, setUser] = useState(currentUser);
+  const userName = currentUser ? { username: currentUser.username } : null;
+  const [user, setUser] = useState(userName);
 
-  const logIn = useCallback(async ({ username, password }) => {
-    const { data } = await axios.post(routes.loginPath(), { username, password });
-    setUser(data);
-    localStorage.setItem('user', JSON.stringify(data));
-  }, []);
-
-  const signup = useCallback(async ({ username, password }) => {
-    const { data } = await axios.post(routes.signupPath(), { username, password });
-    setUser(data);
-    localStorage.setItem('user', JSON.stringify(data));
+  const logIn = useCallback((userData) => {
+    localStorage.setItem('user', JSON.stringify(userData));
+    setUser({ username: userData.username });
   }, []);
 
   const logOut = useCallback(() => {
-    setUser(null);
     localStorage.removeItem('user');
+    setUser(null);
   }, []);
 
-  const getAuthToken = useCallback(() => user.token ?? null, [user]);
+  const getAuthHeader = useCallback(() => {
+    const userId = JSON.parse(localStorage.getItem('user'));
 
-  const getUsername = useCallback(() => user.username ?? null, [user]);
+    return userId?.token
+      ? { Authorization: `Bearer ${userId.token}` }
+      : {};
+  }, []);
 
-  const value = useMemo(() => ({
-    logIn,
-    logOut,
-    getAuthToken,
-    getUsername,
-    signup,
-    user,
-  }), [logIn, logOut, getAuthToken, getUsername, signup, user]);
-
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
+  const memoAuth = useMemo(
+    () => (
+      {
+        user, logIn, logOut, getAuthHeader,
+      }),
+    [user, logIn, logOut, getAuthHeader],
   );
+
+  return <AuthContext.Provider value={memoAuth}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;

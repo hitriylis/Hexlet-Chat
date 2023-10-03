@@ -5,24 +5,26 @@
   "proxy": "http://localhost:5001",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
-    "@rollbar/react": "^0.11.2",
-    "axios": "^1.4.0",
-    "bootstrap": "^5.3.0",
-    "formik": "^2.4.2",
-    "i18next": "^23.5.1",
+    "@rollbar/react": "^0.11.1",
+    "axios": "^1.3.6",
+    "bootstrap": "^5.3.0-alpha3",
+    "formik": "^2.2.9",
+    "i18next": "^22.4.15",
     "leo-profanity": "^1.7.0",
     "react": "^18.2.0",
-    "react-bootstrap": "^2.8.0",
+    "react-bootstrap": "^2.7.4",
+    "react-bootstrap-icons": "^1.10.3",
     "react-dom": "^18.2.0",
-    "react-i18next": "^13.2.2",
-    "react-redux": "^8.1.1",
-    "react-router-dom": "^6.14.0",
+    "react-i18next": "^12.2.2",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
-    "react-toastify": "^9.1.3",
-    "rollbar": "^2.26.2",
-    "socket.io-client": "^4.7.1",
+    "react-toastify": "^9.1.2",
+    "rollbar": "^2.26.1",
+    "sass": "^1.62.1",
+    "socket.io-client": "^4.6.1",
     "web-vitals": "^2.1.4",
-    "yup": "^1.2.0"
+    "yup": "^1.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -43,13 +45,12 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@types/node": "^20.6.3",
-    "eslint": "^8.49.0",
+    "eslint": "^8.39.0",
     "eslint-config-airbnb": "^19.0.4",
-    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-functional": "^5.0.8",
+    "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0"
   }
 }
