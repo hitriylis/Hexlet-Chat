@@ -5,7 +5,6 @@ import { useEffect, useRef } from 'react';
 
 import Message from './Message';
 import MessageForm from './MessageForm';
-
 import { selectors as messagesSelectors } from '../../../selectors/messages';
 import { selectors as channelsSelectors } from '../../../selectors/channels';
 import { useFilter } from '../../../hooks';

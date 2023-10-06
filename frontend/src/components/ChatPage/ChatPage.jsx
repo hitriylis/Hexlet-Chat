@@ -1,11 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useMemo } from 'react';
-
 import { Container, Row } from 'react-bootstrap';
 
 import getModalComponent from '../Modals';
 import ChatBox from './ChatBox';
-
 import fetchDataThunk from '../../slices/thunks';
 import { useAuth, useSocket } from '../../hooks';
 import { selectors as modalsSelectors } from '../../selectors/modal';

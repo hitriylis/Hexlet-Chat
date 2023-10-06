@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 
 import { selectors as channelsSelectors } from '../../../selectors/channels';
 import { actions as modalsActions } from '../../../selectors/modal';
-
 import Channel from './Channel';
 
 const ChannelsBox = () => {

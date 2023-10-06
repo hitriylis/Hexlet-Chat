@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
 import fetchAllData from '../chatApi/fetchData';
 
 const fetchDataThunk = createAsyncThunk(

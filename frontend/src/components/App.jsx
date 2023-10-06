@@ -10,7 +10,6 @@ import LoginPage from './LoginPage/LoginPage';
 import SignupPage from './SignupPage/SignupPage';
 import ChatPage from './ChatPage/ChatPage';
 import NotFoundPage from './Errors/NotFoundPage';
-
 import { useAuth } from '../hooks';
 import { appPaths } from '../routes';
 
