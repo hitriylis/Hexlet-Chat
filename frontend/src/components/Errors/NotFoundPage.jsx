@@ -2,7 +2,7 @@ import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { appPaths } from '../../routes';
+import routes from '../../routes';
 import error from '../../assets/404.svg';
 
 const NotFoundPage = () => {
@@ -15,7 +15,7 @@ const NotFoundPage = () => {
       <p className="text-muted">
         {t('redirect')}
         {' '}
-        <Link to={appPaths.chat}>{t('mainPage')}</Link>
+        <Link to={routes.chat}>{t('mainPage')}</Link>
       </p>
     </div>
   );

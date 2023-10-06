@@ -1,14 +1,11 @@
 const apiPath = 'api/v1';
 
-export const appPaths = {
+export default {
   signUp: '/signup',
   login: '/login',
   chat: '/',
   notFound: '*',
-};
-
-export const apiRoutes = {
-  signup: () => [apiPath, 'signup'].join('/'),
-  login: () => [apiPath, 'login'].join('/'),
-  data: () => [apiPath, 'data'].join('/'),
+  signupPath: () => [apiPath, 'signup'].join('/'),
+  loginPath: () => [apiPath, 'login'].join('/'),
+  dataPath: () => [apiPath, 'data'].join('/'),
 };

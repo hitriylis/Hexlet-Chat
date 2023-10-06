@@ -11,11 +11,11 @@ import SignupPage from './SignupPage/SignupPage';
 import ChatPage from './ChatPage/ChatPage';
 import NotFoundPage from './Errors/NotFoundPage';
 import { useAuth } from '../hooks';
-import { appPaths } from '../routes';
+import routes from '../routes';
 
 const ProtectedRoute = ({ children }) => {
   const auth = useAuth();
-  return auth.user ? children : <Navigate to={appPaths.login} />;
+  return auth.user ? children : <Navigate to={routes.login} />;
 };
 
 const App = () => (
@@ -25,17 +25,17 @@ const App = () => (
       <ChatNavbar />
 
       <Routes>
-        <Route path={appPaths.login} element={<LoginPage />} />
-        <Route path={appPaths.signUp} element={<SignupPage />} />
+        <Route path={routes.login} element={<LoginPage />} />
+        <Route path={routes.signUp} element={<SignupPage />} />
         <Route
-          path={appPaths.chat}
+          path={routes.chat}
           element={(
             <ProtectedRoute>
               <ChatPage />
             </ProtectedRoute>
           )}
         />
-        <Route path={appPaths.notFound} element={<NotFoundPage />} />
+        <Route path={routes.notFound} element={<NotFoundPage />} />
       </Routes>
 
     </div>

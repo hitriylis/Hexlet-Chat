@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import AuthButton from './AuthButton';
 
-import { appPaths } from '../../routes';
+import routes from '../../routes';
 
 const ChatNavbar = () => {
   const { t } = useTranslation();
@@ -13,7 +13,7 @@ const ChatNavbar = () => {
     <>
       <Navbar bg="white" expand="lg" className="shadow-sm">
         <Container>
-          <Navbar.Brand as={Link} to={appPaths.chat}>{t('name')}</Navbar.Brand>
+          <Navbar.Brand as={Link} to={routes.chat}>{t('name')}</Navbar.Brand>
           <AuthButton />
         </Container>
       </Navbar>

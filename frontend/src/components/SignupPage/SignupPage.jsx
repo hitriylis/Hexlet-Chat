@@ -11,7 +11,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { registrationSchema } from '../../validation/validationSchema';
 import { useAuth } from '../../hooks';
-import { apiRoutes, appPaths } from '../../routes';
+import routes from '../../routes';
 
 import signupImg from '../../assets/signup.jpg';
 
@@ -50,9 +50,9 @@ const SignupPage = () => {
     onSubmit: async ({ username, password }) => {
       setRegFailed(false);
       try {
-        const { data } = await axios.post(apiRoutes.signup(), { username, password });
+        const { data } = await axios.post(routes.signupPath(), { username, password });
         logIn(data);
-        navigate(appPaths.chat);
+        navigate(routes.chat);
       } catch (error) {
         formik.setSubmitting(false);
         if (error.isAxiosError) {

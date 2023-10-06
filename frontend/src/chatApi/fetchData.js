@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-import { apiRoutes } from '../routes';
+import routes from '../routes';
 
 export default async (headers) => {
-  const { data } = await axios.get(apiRoutes.data(), headers);
+  const { data } = await axios.get(routes.dataPath(), headers);
 
   return data;
 };

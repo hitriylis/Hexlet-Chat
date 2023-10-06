@@ -11,7 +11,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { loginSchema } from '../../validation/validationSchema';
 import { useAuth } from '../../hooks';
-import { apiRoutes, appPaths } from '../../routes';
+import routes from '../../routes';
 
 import loginImg from '../../assets/login.jpg';
 
@@ -45,9 +45,9 @@ const LoginPage = () => {
     onSubmit: async (values) => {
       setAuthFailed(false);
       try {
-        const { data } = await axios.post(apiRoutes.login(), values);
+        const { data } = await axios.post(routes.loginPath(), values);
         logIn(data);
-        navigate(appPaths.chat);
+        navigate(routes.chat);
       } catch (error) {
         formik.setSubmitting(false);
         if (error.isAxiosError) {
@@ -126,7 +126,7 @@ const LoginPage = () => {
               <div className="text-center">
                 <span>{t('noAccount')}</span>
                 {' '}
-                <Link to={appPaths.signUp}>{t('registration')}</Link>
+                <Link to={routes.signUp}>{t('registration')}</Link>
               </div>
             </Card.Footer>
           </Card>

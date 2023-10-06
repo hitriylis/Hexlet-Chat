@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Button, Image } from 'react-bootstrap';
 
-import { apiRoutes } from '../../routes';
+import routes from '../../routes';
 import { useAuth } from '../../hooks';
 import errorImg from '../../assets/error.png';
 
@@ -14,7 +14,7 @@ const ErrorPage = () => {
   const { errorCode, errorMessage } = useSelector((state) => state.channels.error);
 
   const handleAuthError = () => {
-    navigate(apiRoutes.login);
+    navigate(routes.loginPath);
     logOut();
   };
 
