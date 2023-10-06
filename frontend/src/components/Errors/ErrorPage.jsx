@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Button, Image } from 'react-bootstrap';
@@ -11,15 +10,9 @@ const ErrorPage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { logOut } = useAuth();
-  const { errorCode, errorMessage } = useSelector((state) => state.channels.error);
-
   const handleAuthError = () => {
     navigate(routes.loginPath);
     logOut();
-  };
-
-  const handleOtherError = () => {
-    navigate(0);
   };
 
   return (
@@ -27,9 +20,8 @@ const ErrorPage = () => {
       <Image width={200} height={200} alt="error image" src={errorImg} />
       <h3>{t('error')}</h3>
       {' '}
-      <p>{errorMessage}</p>
-      <Button onClick={errorCode === 401 ? handleAuthError : handleOtherError}>
-        {errorCode === 401 ? t('reauthorization') : t('update')}
+      <Button onClick={handleAuthError}>
+        {t('reauthorization')}
       </Button>
     </div>
   );
