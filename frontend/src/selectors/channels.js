@@ -21,6 +21,7 @@ const customSelectors = {
     return channels.map(({ name }) => name);
   },
 
+  selectLoadingStatus: (state) => state.channels.loadingStatus,
 };
 
 export { actions, customSelectors as selectors };
