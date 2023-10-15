@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { useSocket } from '../../hooks';
 import { newChannelSchema } from '../../validation/validationSchema';
-import { actions as modalsActions, selectors as modalsSelectors } from '../../selectors/modal';
+import { actions as modalsActions } from '../../selectors/modal';
 import { selectors as channelsSelectors } from '../../selectors/channels';
 
 const Add = () => {
@@ -17,7 +17,7 @@ const Add = () => {
   const rollbar = useRollbar();
   const inputRef = useRef(null);
   const dispatch = useDispatch();
-  const isOpened = useSelector(modalsSelectors.selectOpened);
+  const isOpened = useSelector((state) => state.modals.isOpened);
   const channels = useSelector(channelsSelectors.selectChannelsNames);
 
   useEffect(() => {
