@@ -11,7 +11,7 @@ const ChannelsBox = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const channels = useSelector(channelsSelectors.selectAll);
-  const currentChannelId = useSelector((state) => state.channels.currentChannelId);
+  const currentChannelId = useSelector(channelsSelectors.selectCurrentChannelId);
 
   const handleAddChannel = () => {
     dispatch(modalsActions.open({ type: 'adding', targetId: null }));
