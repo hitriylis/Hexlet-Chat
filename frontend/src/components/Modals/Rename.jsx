@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useSocket } from '../../hooks';
 import { newChannelSchema } from '../../validation/validationSchema';
 import { actions as modalsActions } from '../../selectors/modal';
-// import { actions as modalsActions, selectors as modalsSelectors } from '../../selectors/modal';
 import { selectors as channelsSelectors } from '../../selectors/channels';
 
 const Rename = () => {
@@ -19,10 +18,7 @@ const Rename = () => {
   const inputRef = useRef(null);
   const dispatch = useDispatch();
   const { isOpened, targetId } = useSelector((state) => state.modals);
-  // const isOpened = useSelector(modalsSelectors.selectOpened);
-  // const targetId = useSelector(modalsSelectors.selectTargetId);
   const channelName = useSelector((state) => channelsSelectors.selectById(state, targetId)).name;
-  // const channelName = useSelector(channelsSelectors.selectById(targetId)).name;
   const channels = useSelector(channelsSelectors.selectChannelsNames);
 
   useEffect(() => {

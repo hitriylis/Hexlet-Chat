@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { actions as modalsActions } from '../../selectors/modal';
-// import { actions as modalsActions, selectors as modalsSelectors } from '../../selectors/modal';
 import { useSocket } from '../../hooks';
 
 const Remove = () => {
@@ -15,8 +14,6 @@ const Remove = () => {
   const rollbar = useRollbar();
   const dispatch = useDispatch();
   const { isOpened, targetId } = useSelector((state) => state.modals);
-  // const isOpened = useSelector(modalsSelectors.selectOpened);
-  // const targetId = useSelector(modalsSelectors.selectTargetId);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleClose = () => dispatch(modalsActions.close());
