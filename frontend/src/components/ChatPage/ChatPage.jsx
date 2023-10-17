@@ -29,7 +29,7 @@ const ChatPage = () => {
         if (error.isAxiosError && error.response.status === 409) {
           toast.error(t('errors.network'));
         } else {
-          toast.error(t('errors.athorization'));
+          toast.error(t('errors.authorization'));
           console.error(error.message);
         }
       }

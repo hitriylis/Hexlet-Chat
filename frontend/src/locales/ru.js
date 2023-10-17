@@ -69,6 +69,7 @@ export default {
       channelAdd: 'Ошибка добавления канала',
       channelRemove: 'Ошибка удаления канала',
       channelRename: 'Ошибка переименования канала',
+      authorization: 'Ошибка авторизации',
     },
   },
 };
