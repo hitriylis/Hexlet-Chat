@@ -7,6 +7,8 @@ const selectors = {
 
   selectOpened: (state) => state.modals.isOpened,
 
+  selectTargetId: (state) => state.modals.targetId,
+
 };
 
 export { actions, selectors };
