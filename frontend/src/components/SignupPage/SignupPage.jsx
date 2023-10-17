@@ -12,7 +12,6 @@ import { useEffect, useRef, useState } from 'react';
 import { registrationSchema } from '../../validation/validationSchema';
 import { useAuth } from '../../hooks';
 import routes from '../../routes';
-
 import signupImg from '../../assets/signup.jpg';
 
 const SignupPage = () => {

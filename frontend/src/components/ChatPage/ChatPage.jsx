@@ -6,7 +6,7 @@ import getModalComponent from '../Modals';
 import ChatBox from './ChatBox';
 import fetchDataThunk from '../../slices/thunks';
 import { useAuth, useSocket } from '../../hooks';
-import { selectors as modalsSelectors } from '../../selectors/modal';
+import { selectors as modalsSelectors } from '../../selectors/modalSelectors';
 
 const ChatPage = () => {
   const socket = useSocket();

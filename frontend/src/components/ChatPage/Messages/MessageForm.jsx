@@ -8,7 +8,7 @@ import { useRollbar } from '@rollbar/react';
 import { useTranslation } from 'react-i18next';
 
 import { useAuth, useSocket } from '../../../hooks';
-import { selectors as channelsSelectors } from '../../../selectors/channels';
+import { selectors as channelsSelectors } from '../../../selectors/channelsSelectors';
 import { chatSchema } from '../../../validation/validationSchema';
 
 const MessageForm = () => {

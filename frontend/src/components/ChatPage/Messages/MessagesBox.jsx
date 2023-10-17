@@ -5,8 +5,8 @@ import { useEffect, useRef } from 'react';
 
 import Message from './Message';
 import MessageForm from './MessageForm';
-import { selectors as messagesSelectors } from '../../../selectors/messages';
-import { selectors as channelsSelectors } from '../../../selectors/channels';
+import { selectors as messagesSelectors } from '../../../selectors/messagesSelectors';
+import { selectors as channelsSelectors } from '../../../selectors/channelsSelectors';
 import { useFilter } from '../../../hooks';
 
 const MessagesBox = () => {

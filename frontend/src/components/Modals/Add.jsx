@@ -8,8 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { useSocket } from '../../hooks';
 import { newChannelSchema } from '../../validation/validationSchema';
-import { actions as modalsActions, selectors as modalsSelectors } from '../../selectors/modal';
-import { selectors as channelsSelectors } from '../../selectors/channels';
+import { actions as modalsActions, selectors as modalsSelectors } from '../../selectors/modalSelectors';
+import { selectors as channelsSelectors } from '../../selectors/channelsSelectors';
 
 const Add = () => {
   const { t } = useTranslation();

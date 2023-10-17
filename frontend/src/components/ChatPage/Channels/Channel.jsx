@@ -5,8 +5,8 @@ import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import { useFilter } from '../../../hooks';
-import { actions as channelsActions } from '../../../selectors/channels';
-import { actions as modalsActions } from '../../../selectors/modal';
+import { actions as channelsActions } from '../../../selectors/channelsSelectors';
+import { actions as modalsActions } from '../../../selectors/modalSelectors';
 
 const Channel = ({ isActive, channel }) => {
   const { t } = useTranslation();

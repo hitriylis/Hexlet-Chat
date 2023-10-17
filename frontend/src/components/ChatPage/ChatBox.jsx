@@ -4,7 +4,7 @@ import ChannelsBox from './Channels/ChannelsBox';
 import MessagesBox from './Messages/MessagesBox';
 import ErrorPage from '../Errors/ErrorPage';
 import LoadingSpinner from './LoadingSpinner';
-import { selectors as channelsSelectors } from '../../selectors/channels';
+import { selectors as channelsSelectors } from '../../selectors/channelsSelectors';
 
 const statuses = {
   loading: 'loading',

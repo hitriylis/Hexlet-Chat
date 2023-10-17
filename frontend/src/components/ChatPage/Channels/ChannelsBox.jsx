@@ -3,8 +3,8 @@ import { PlusSquareFill } from 'react-bootstrap-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { selectors as channelsSelectors } from '../../../selectors/channels';
-import { actions as modalsActions } from '../../../selectors/modal';
+import { selectors as channelsSelectors } from '../../../selectors/channelsSelectors';
+import { actions as modalsActions } from '../../../selectors/modalSelectors';
 import Channel from './Channel';
 
 const ChannelsBox = () => {

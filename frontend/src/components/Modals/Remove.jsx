@@ -5,7 +5,7 @@ import { useRollbar } from '@rollbar/react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { actions as modalsActions } from '../../selectors/modal';
+import { actions as modalsActions } from '../../selectors/modalSelectors';
 import { useSocket } from '../../hooks';
 
 const Remove = () => {

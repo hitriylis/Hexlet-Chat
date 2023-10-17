@@ -2,8 +2,8 @@ import { useCallback, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { SocketContext } from './index';
-import { actions as messagesActions } from '../selectors/messages';
-import { actions as channelsActions } from '../selectors/channels';
+import { actions as messagesActions } from '../selectors/messagesSelectors';
+import { actions as channelsActions } from '../selectors/channelsSelectors';
 
 const SocketProvider = ({ socket, children }) => {
   const dispatch = useDispatch();
