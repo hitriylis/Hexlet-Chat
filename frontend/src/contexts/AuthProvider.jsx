@@ -25,13 +25,16 @@ const AuthProvider = ({ children }) => {
       : {};
   }, []);
 
-  const memoAuth = useMemo(
-    () => (
-      {
-        user, logIn, logOut, getAuthHeader,
-      }),
-    [user, logIn, logOut, getAuthHeader],
-  );
+  const memoAuth = useMemo(() => {
+    const token = getAuthHeader();
+    return {
+      user,
+      logIn,
+      logOut,
+      getAuthHeader,
+      token,
+    };
+  }, [user, logIn, logOut, getAuthHeader]);
 
   return <AuthContext.Provider value={memoAuth}>{children}</AuthContext.Provider>;
 };
