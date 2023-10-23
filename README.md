@@ -10,7 +10,7 @@
 
 ## Install
 ```bash
-git clone git@github.com:hitriylis/frontend-project-12
+git clone git@github.com:hitriylis/Hexlet-Chat
 ```
 ```bash
 make install
